@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ryan Cheung | Case Studies</title>
+<meta name="description" content="Case studies in process and delivery by Yuk Wa Ryan Cheung, MSc Business Analytics &amp; AI, Warwick Business School.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one reading column; each case study is a ledger row with a meta rail on the left and the process trace on the right */
+:root {
+  --paper: #F3F5F8;
+  --surface: #FFFFFF;
+  --ink: #151B28;
+  --muted: #576074;
+  --line: #D6DBE4;
+  --accent: #2A45C4;
+  --accent-soft: #E3E8FB;
+  --mark: #FFE38A;
+  --display: "Bricolage Grotesque", "Avenir Next", "Segoe UI", sans-serif;
+  --body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0F131B; --surface: #161B26; --ink: #E6E9F0; --muted: #9AA3B6;
+    --line: #283041; --accent: #93A6FF; --accent-soft: #1E2645; --mark: #6A5716;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0F131B; --surface: #161B26; --ink: #E6E9F0; --muted: #9AA3B6;
+  --line: #283041; --accent: #93A6FF; --accent-soft: #1E2645; --mark: #6A5716;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; }
+img { max-width: 100%; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 16px;
+  line-height: 1.6;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 56px 72px;
+}
+.wrap { max-width: 920px; margin: 0 auto; display: grid; gap: 64px; }
+
+h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; line-height: 1.12; }
+p { margin: 0; }
+.eyebrow {
+  font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--muted);
+}
+
+/* Header */
+header { display: grid; gap: 20px; }
+header h1 { font-size: clamp(36px, 6vw, 60px); font-weight: 700; letter-spacing: -0.02em; }
+header h1 span { color: var(--accent); }
+.lede { font-size: 19px; max-width: 58ch; color: var(--ink); }
+.creds { display: flex; flex-wrap: wrap; gap: 8px 24px; color: var(--muted); font-size: 14px; }
+.creds b { color: var(--ink); font-weight: 600; }
+
+.contact { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.email {
+  font-family: var(--mono); font-size: 14px; padding: 8px 12px;
+  background: var(--surface); border: 1px solid var(--line); border-radius: 6px;
+  user-select: all; overflow-wrap: anywhere;
+}
+button.copy {
+  font: 500 14px var(--body); color: var(--surface); background: var(--ink);
+  border: 0; border-radius: 6px; padding: 9px 14px; cursor: pointer;
+}
+button.copy:focus-visible, a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.copied { font-size: 13px; color: var(--muted); }
+
+/* Index of cases */
+.index { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; border-top: 1px solid var(--ink); }
+.index a {
+  display: grid; gap: 6px; padding: 14px 16px 16px 0; color: inherit; text-decoration: none;
+  border-bottom: 1px solid var(--line);
+}
+.index a:hover .t { color: var(--accent); }
+.index .t { font-family: var(--display); font-weight: 500; font-size: 18px; line-height: 1.25; }
+.index .r { font-family: var(--mono); font-size: 13px; color: var(--accent); font-variant-numeric: tabular-nums; }
+
+/* Case study */
+.case { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 32px; padding-top: 28px; border-top: 1px solid var(--ink); }
+.meta { display: grid; gap: 6px; align-content: start; }
+.meta .org { font-family: var(--display); font-size: 22px; font-weight: 700; }
+.meta .role, .meta .when { font-size: 14px; color: var(--muted); }
+.meta .when { font-family: var(--mono); font-size: 13px; font-variant-numeric: tabular-nums; }
+.meta .about { font-size: 14px; color: var(--muted); margin-top: 8px; }
+
+.body { display: grid; gap: 22px; min-width: 0; }
+.body h2 { font-size: clamp(26px, 3.6vw, 34px); font-weight: 700; letter-spacing: -0.01em; }
+.body > p { max-width: 64ch; }
+mark { background: linear-gradient(transparent 58%, var(--mark) 58%); color: inherit; padding: 0 1px; }
+
+/* Process trace: a real sequence, so it is numbered */
+.trace { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; counter-reset: step; }
+.trace li { position: relative; padding: 30px 18px 0 0; counter-increment: step; min-width: 0; }
+.trace li::before {
+  content: ""; position: absolute; top: 9px; left: 0; right: 0; height: 2px; background: var(--line);
+}
+.trace li::after {
+  content: counter(step, decimal-leading-zero); position: absolute; top: 0; left: 0;
+  font: 500 11px/20px var(--mono); color: var(--surface); background: var(--accent);
+  width: 28px; height: 20px; text-align: center; border-radius: 3px;
+}
+.trace h3 { font-family: var(--body); font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+.trace p { font-size: 14px; color: var(--muted); }
+
+/* Outcomes */
+.outcomes { display: flex; flex-wrap: wrap; gap: 12px; }
+.outcome {
+  display: grid; gap: 2px; padding: 14px 18px; background: var(--surface);
+  border: 1px solid var(--line); border-radius: 8px; min-width: 0; flex: 1 1 200px;
+}
+.outcome .n { font-family: var(--display); font-size: 36px; font-weight: 700; color: var(--accent); line-height: 1.05; font-variant-numeric: tabular-nums; }
+.outcome .l { font-size: 14px; color: var(--muted); }
+
+/* KPI chips (pricing) */
+.chips { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.chips li {
+  font-family: var(--mono); font-size: 13px; padding: 5px 10px; border-radius: 999px;
+  background: var(--accent-soft); color: var(--ink);
+}
+.sub { font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+
+/* Tracking columns (MyStudyKit) */
+.cols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.col { border: 1px dashed var(--line); border-radius: 8px; padding: 12px 14px; display: grid; gap: 4px; }
+.col b { font-family: var(--display); font-weight: 500; font-size: 18px; }
+.col span { font-size: 13px; color: var(--muted); }
+
+/* How I work */
+.principles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.principles div { display: grid; gap: 6px; padding-top: 14px; border-top: 2px solid var(--accent); }
+.principles h3 { font-size: 20px; font-weight: 700; }
+.principles p { font-size: 15px; color: var(--muted); }
+section > h2.section { font-size: 28px; margin-bottom: 20px; }
+
+footer { display: grid; gap: 14px; padding-top: 28px; border-top: 1px solid var(--ink); }
+footer p { color: var(--muted); font-size: 14px; }
+
+@media (max-width: 760px) {
+  .case { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+  .trace { grid-template-columns: minmax(0, 1fr); gap: 18px; }
+  .trace li { padding: 0 0 0 44px; }
+  .trace li::before { top: 22px; bottom: -18px; left: 13px; right: auto; width: 2px; height: auto; }
+  .trace li:last-child::before { display: none; }
+  .index, .principles, .cols { grid-template-columns: minmax(0, 1fr); }
+  .index a { padding-right: 0; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .index a .t { transition: color .15s ease; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <p class="eyebrow">Case studies · Process and delivery</p>
+    <h1>Yuk Wa Ryan Cheung<span>.</span></h1>
+    <p class="lede">Three projects where I worked closely with a team to understand what they needed. Then I changed how the work got done, and measured the result.</p>
+    <div class="creds">
+      <span><b>MSc Business Analytics &amp; AI</b> · Warwick Business School</span>
+      <span><b>BSc Business and Management (2:1)</b> · University of Exeter</span>
+      <span>London</span>
+    </div>
+    <div class="contact">
+      <span class="email" id="email">ryancheung777@gmail.com</span>
+      <button class="copy" id="copy-email" type="button">Copy email</button>
+      <span class="copied" id="copied" aria-live="polite"></span>
+    </div>
+  </header>
+
+  <nav class="index" aria-label="Case studies">
+    <a href="#bi-tools"><span class="t">Two BI tools, built with the team first</span><span class="r">−20% ad spend · +15% conversion</span></a>
+    <a href="#pricing"><span class="t">Digitalising the pricing model</span><span class="r">−40% pricing task time</span></a>
+    <a href="#notion"><span class="t">A shared way to track the work</span><span class="r">−10% project delivery time</span></a>
+  </nav>
+
+  <article class="case" id="bi-tools">
+    <div class="meta">
+      <span class="org">Attomarker</span>
+      <span class="role">Digital Transformation and Commercial Strategy Intern</span>
+      <span class="when">Oct 2025 – Mar 2026</span>
+      <p class="about">Biotech startup developing rapid, point-of-care blood tests for diagnosis.</p>
+    </div>
+    <div class="body">
+      <p class="sub">Case study 01</p>
+      <h2>Two BI tools, built with the team first</h2>
+      <p>I ran two digital projects for the marketing team. The first was a set of Power BI dashboards to track organic and paid traffic across Google Ads and Meta Ads. The second came from the director, because he wanted to digitalise Meta ads spend auditing. I advised him on using an AI agent, Power BI and Tableau for it. Both projects followed the <mark>same delivery lifecycle</mark>, so the people using the tools shaped them before anything was built.</p>
+      <ol class="trace">
+        <li><h3>Requirements</h3><p>Chaired meetings with the marketing team to understand their priorities. Then ran impact analysis to identify the key requirements.</p></li>
+        <li><h3>Prototype</h3><p>Built a prototype to show how the BI tools would work, before any technical development.</p></li>
+        <li><h3>UAT</h3><p>Designed a user acceptance testing framework ahead of the build, so the team could check the tool against their needs.</p></li>
+        <li><h3>Delivery</h3><p>Delivered the dashboards and the auditing tool, which visualised underperforming ads.</p></li>
+      </ol>
+      <div class="outcomes">
+        <div class="outcome"><span class="n">−20%</span><span class="l">ad spend after the BI dashboard was delivered</span></div>
+        <div class="outcome"><span class="n">+15%</span><span class="l">conversion once underperforming ads were visible</span></div>
+      </div>
+    </div>
+  </article>
+
+  <article class="case" id="pricing">
+    <div class="meta">
+      <span class="org">Attomarker</span>
+      <span class="role">Digital Transformation and Commercial Strategy Intern</span>
+      <span class="when">Oct 2025 – Mar 2026</span>
+    </div>
+    <div class="body">
+      <p class="sub">Case study 02</p>
+      <h2>Digitalising the pricing model</h2>
+      <p>My manager wanted to digitalise the pricing model, so I advised on it using Excel and AI tools. First, I built a cost reporting dashboard that recorded and analysed the KPIs behind each price. Then I built a <mark>dynamic pricing and cost estimating mechanism</mark> on top of it, which made pricing much faster.</p>
+      <div>
+        <p class="sub" style="margin-bottom:10px">KPIs tracked in the dashboard</p>
+        <ul class="chips">
+          <li>Competitor price</li>
+          <li>Price difference vs competitors</li>
+          <li>Marginal cost and profit</li>
+          <li>Risk premium</li>
+          <li>CPI</li>
+          <li>Inflation rate</li>
+          <li>Overhead cost</li>
+          <li>Target profit margin</li>
+        </ul>
+      </div>
+      <div class="outcomes">
+        <div class="outcome"><span class="n">−40%</span><span class="l">time spent on pricing tasks</span></div>
+      </div>
+    </div>
+  </article>
+
+  <article class="case" id="notion">
+    <div class="meta">
+      <span class="org">MyStudyKit</span>
+      <span class="when">Jan 2025 – Jun 2025</span>
+      <p class="about">UK-based education tech start-up serving A-level and GCSE students.</p>
+    </div>
+    <div class="body">
+      <p class="sub">Case study 03</p>
+      <h2>A shared way to track the work</h2>
+      <p>I led a small team to improve customer experience and operations. I introduced Notion as a <mark>new practice</mark> for tracking tasks, deadlines and milestones. Alongside this, I mapped the customer journey.</p>
+      <div>
+        <p class="sub" style="margin-bottom:10px">What the team tracked in Notion</p>
+        <div class="cols">
+          <div class="col"><b>Tasks</b><span>Who is doing what</span></div>
+          <div class="col"><b>Deadlines</b><span>When each piece is due</span></div>
+          <div class="col"><b>Milestones</b><span>What finished looks like</span></div>
+        </div>
+      </div>
+      <div class="outcomes">
+        <div class="outcome"><span class="n">−10%</span><span class="l">project delivery time</span></div>
+      </div>
+    </div>
+  </article>
+
+  <section>
+    <h2 class="section">How I work</h2>
+    <div class="principles">
+      <div><h3>Ask first</h3><p>Each project started with the people who would use the result. I wanted to know their priorities before building anything.</p></div>
+      <div><h3>Test before delivery</h3><p>Prototypes and UAT came before the build. As a result, the team could check the tool before it reached them.</p></div>
+      <div><h3>Measure the change</h3><p>Every project ended with a result I could measure, so I knew whether the new process actually helped.</p></div>
+    </div>
+  </section>
+
+  <footer>
+    <p class="eyebrow">Get in touch</p>
+    <div class="contact">
+      <a class="email" href="mailto:ryancheung777@gmail.com" style="color:inherit;text-decoration:none">ryancheung777@gmail.com</a>
+    </div>
+    <p>Full CV and references available on request.</p>
+  </footer>
+
+</div>
+
+<script>
+(function () {
+  var btn = document.getElementById('copy-email');
+  var note = document.getElementById('copied');
+  var email = document.getElementById('email');
+  function selectEmail() {
+    try {
+      var r = document.createRange(); r.selectNodeContents(email);
+      var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+      note.textContent = 'Selected. Press Ctrl+C or Cmd+C to copy.';
+    } catch (e) {}
+  }
+  btn.addEventListener('click', function () {
+    try {
+      navigator.clipboard.writeText(email.textContent.trim())
+        .then(function () { note.textContent = 'Copied'; })
+        .catch(selectEmail);
+    } catch (e) { selectEmail(); }
+  });
+})();
+</script>
+
+</body>
+</html>
